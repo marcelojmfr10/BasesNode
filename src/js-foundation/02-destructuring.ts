@@ -6,7 +6,7 @@ const { LANG, VSCODE_INJECTION, npm_lifecycle_script } = process.env;
 
 // console.table({LANG, VSCODE_INJECTION, npm_lifecycle_script});
 
-const characters = ['flash', 'superman', 'green lantern', 'batman'];
+export const characters = ['flash', 'superman', 'green lantern', 'batman'];
 
 const batman = characters[2];
 
