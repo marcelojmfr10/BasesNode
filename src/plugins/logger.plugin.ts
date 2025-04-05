@@ -1,13 +1,13 @@
-import winston, {format} from 'winston';
+import winston, { format } from 'winston';
 const { combine, timestamp, json } = format;
 
-const logger = winston.createLogger({
+export const logger = winston.createLogger({
   level: 'info',
   format: combine(
     timestamp(),
     json(),
   ),
-//   defaultMeta: { service: 'user-service' },
+  //   defaultMeta: { service: 'user-service' },
   transports: [
     //
     // - Write all logs with importance level of `error` or higher to `error.log`
@@ -23,20 +23,20 @@ const logger = winston.createLogger({
 });
 
 logger.add(new winston.transports.Console({
-    format: winston.format.simple(),
-  }));
+  format: winston.format.simple(),
+}));
 
 
-export const buildLogger =(service: string)  => {
-    return {
-        log: (message: string) => {
-            logger.log('info', {message, service});
-        },
-        error: (message: string) => {
-            logger.error('error', {
-                message, 
-                service, 
-                });
-        }
+export const buildLogger = (service: string) => {
+  return {
+    log: (message: string) => {
+      logger.log('info', { message, service });
+    },
+    error: (message: string) => {
+      logger.error('error', {
+        message,
+        service,
+      });
     }
+  }
 }
